@@ -11,4 +11,19 @@ class Product extends Model
     public $primaryKey = 'id';
     public $incrementing = true;
     public $timestamp = false;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }   
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function uom()
+    {
+        return $this->belongsTo(UnitOfMeasure::class);
+    }
 }

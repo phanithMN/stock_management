@@ -101,6 +101,18 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input
+                                        type="number"
+                                        class="form-control"
+                                        id="price"
+                                        name="price"
+                                        placeholder="Enter Price"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" rows="5"></textarea>
                                     </div>

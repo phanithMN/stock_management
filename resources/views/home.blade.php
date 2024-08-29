@@ -30,7 +30,7 @@
               </div>
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
-                  <p class="card-category">Products</p>
+                  <p class="card-category">Total Products</p>
                   <h4 class="card-title">{{$qty_products}}</h4>
                 </div>
                 <div class="link-view">
@@ -54,7 +54,7 @@
               </div>
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
-                  <p class="card-category">Categorys</p>
+                  <p class="card-category">Total Categorys</p>
                   <h4 class="card-title">{{count($categories)}}</h4>
                 </div>
                 <div class="link-view">
@@ -78,11 +78,35 @@
               </div>
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
-                  <p class="card-category">Stocks</p>
+                  <p class="card-category">Total Stocks</p>
                   <h4 class="card-title">{{count($stocks)}}</h4>
                 </div>
                 <div class="link-view">
                   <a href="{{route('stock')}}"><i class="fas fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-round">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-icon">
+                <div
+                  class="icon-big text-center icon-user-color bubble-shadow-small"
+                >
+                  <i class="fas fa-user"></i>
+                </div>
+              </div>
+              <div class="col col-stats ms-3 ms-sm-0">
+                <div class="numbers">
+                  <p class="card-category">Total User</p>
+                  <h4 class="card-title">{{count($users)}}</h4>
+                </div>
+                <div class="link-view">
+                  <a href="{{route('user')}}"><i class="fas fa-arrow-right"></i></a>
                 </div>
               </div>
             </div>

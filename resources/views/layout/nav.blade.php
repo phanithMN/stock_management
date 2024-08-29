@@ -78,6 +78,18 @@
                 </span>
                 <h4 class="text-section">Manage Report</h4>
             </li>
+            <li class="nav-item">
+                <a href="{{route('report-stock')}}">
+                    <i class="fas fa-clipboard-list"></i>
+                    <p>Reprot Stock</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('report-product')}}">
+                    <i class="fas fa-address-card"></i>
+                    <p>Reprot Product</p>
+                </a>
+            </li>
             <li class="nav-section">
                 <span class="sidebar-mini-icon">
                     <i class="fa fa-ellipsis-h"></i>

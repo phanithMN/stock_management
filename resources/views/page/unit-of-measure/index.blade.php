@@ -45,7 +45,6 @@
                       <thead>
                         <tr role="row">
                           <th>Unit</th>
-                          <th>Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -53,7 +52,6 @@
                         @foreach ($unit_of_measures as $unit_of_measure)
                           <tr role="row" class="odd">
                             <td>{{$unit_of_measure->unit}}</td>
-                            <td>{{$unit_of_measure->price}}</td>
                             <td>
                               <div class="form-button-action">
                                 <a  href="{{ route('update-unit-of-measure', $unit_of_measure->id) }} type="button" title="Edit Item" class="btn btn-link btn-primary btn-lg">

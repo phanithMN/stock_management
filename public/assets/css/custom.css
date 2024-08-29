@@ -1,5 +1,5 @@
 .table-responsive .table>tbody>tr>td, .table>tbody>tr>th {
-    padding: 0 12px !important;
+    /* padding:  12px !important; */
     font-size: 0.80rem;
 }
 
@@ -108,11 +108,50 @@
 
   .fill-right {
     justify-content: flex-end;
+    padding: 0;
   }
   
   .fill-right .form-controll-fillter {
-    width: 30%;
+    width: 17%;
     margin: 0 5px;
   }
 
-  
+  .form-button-action {
+    display: flex;
+    align-items: center;
+  }
+
+  .form-button-action .btn-link.btn-primary {
+    padding: 0;
+  }
+
+  .button-export .btn {
+    padding: 3px 5px;
+    font-size: 13px;
+    margin-left: 10px;
+    align-items: center;
+    width: max-content;
+  }
+
+  .button-export .btn i {
+    margin-right: 3px;
+  }
+
+  .none-report {
+    text-align: center;
+  }
+
+  .table-responsive .table>tbody>tr>td.none-report {
+    padding: 100px 100px!important;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .card-stats .icon-big.icon-user-color {
+    background: #fdaf4b;
+    border-radius: 5px;
+  }
+
+  .card-stats .icon-big.icon-user-color i {
+    color: #fff;
+  }

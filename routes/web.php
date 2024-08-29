@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +75,12 @@ Route::post('/insert-data-status', [App\Http\Controllers\StatusController::class
 Route::get('/edit-status/{id}', [App\Http\Controllers\StatusController::class, 'Update'])->name('update-status');
 Route::put('/edit-data-status/{id}', [App\Http\Controllers\StatusController::class, 'DataUpdate'])->name('edit-data-status');
 Route::get('/delete-status/{id}', [App\Http\Controllers\StatusController::class, 'Delete'])->name('delete-status');
+// report stock
+Route::get('/report-stock', [App\Http\Controllers\ReportStockController::class, 'ReportStock'])->name('report-stock');
+Route::get('/export-stock', [App\Http\Controllers\ReportStockController::class, 'ExportCSV'])->name('export-stock');
+// report product 
+Route::get('/report-product', [App\Http\Controllers\ReportProductController::class, 'ReportProduct'])->name('report-product');
+Route::get('/export-product', [App\Http\Controllers\ReportProductController::class, 'ExportCSV'])->name('export-product');
 //setting
 Route::get('/account-setting', [App\Http\Controllers\AccountSettingController::class, 'AccountSetting'])->name('account-setting');
 Route::post('/insert-data', [App\Http\Controllers\AccountSettingController::class, 'DataInsert'])->name('insert-data');

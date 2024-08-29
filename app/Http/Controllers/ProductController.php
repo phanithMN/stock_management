@@ -54,6 +54,7 @@ class ProductController extends Controller
         $products->description = $request->input('description');
         $products->category_id = $request->input('category_id');
         $products->uom_id = $request->input('uom_id');
+        $products->price = $request->input('price');
         if($request->hasFile('image'))
         {
             $file = $request->file('image');
@@ -88,6 +89,7 @@ class ProductController extends Controller
         $products->description = $request->input('description');
         $products->category_id = $request->input('category_id');
         $products->uom_id = $request->input('uom_id');
+        $products->price = $request->input('price');
         if($request->hasFile('image'))
         {
             $destination = 'uploads/products'. $products->image;

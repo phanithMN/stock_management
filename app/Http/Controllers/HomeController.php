@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Stock;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -29,12 +30,14 @@ class HomeController extends Controller
        $products = Product::all();
        $categories = Category::all();
        $stocks = Stock::all();
+       $users = User::all();
        $qty_products = $products->sum('quantity');
 
         return view('home', [
             'qty_products'=>$qty_products,
             'categories'=>$categories,
-            'stocks'=>$stocks
+            'stocks'=>$stocks,
+            'users'=>$users
         ]);
     }
 }

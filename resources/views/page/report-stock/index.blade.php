@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title') {{'Product'}} @endsection
+@section('title') {{'Report Stock'}} @endsection
 @section('content')
 
 <div class="container">
@@ -29,18 +29,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">
-            <div class="d-flex align-items-center">
-              <h4 class="card-title">Add New Product</h4>
-              <a href="{{route('insert-product')}}" class="btn btn-primary btn-round ms-auto">
-                <i class="fa fa-plus"></i> Add Row </a>
-            </div>
-          </div>
           <div class="card-body">
             <div class="table-responsive">
-              <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+              <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 p-0">
                 <div class="row">
-                  <div class="col-sm-12 col-md-6">
+                  <div class="col-sm-12 col-md-2">
                     <div class="dataTables_length" id="add-row_length">
                       <label>
                         Show 
@@ -51,17 +44,9 @@
                           <option value="100" {{ request('row_length') == 100 ? 'selected' : '' }}>100</option>
                         </select> entries 
                       </label>
-                      <script>
-                          document.getElementById('add_row_length').addEventListener('change', function() {
-                              let value = this.value;
-                              let url = new URL(window.location.href);
-                              url.searchParams.set('row_length', value);
-                              window.location.href = url.toString();
-                          });
-                      </script>
                     </div>
                   </div>
-                  <div class="col-sm-12 col-md-6 d-flex fill-right">
+                  <d class="col-sm-12 col-md-10 d-flex fill-right">
                     <div class="form-controll-fillter">
                       <select class="form-select form-select-sm" id="category"  name="category">
                         <option value="">Chosse Category</option>
@@ -79,9 +64,17 @@
                       </select>
                     </div>
                     <div id="add-row_filter" class="dataTables_filter">
-                      <label>
-                        <form action="{{ route('product') }}" method="GET">
-                          @csrf
+                      <form action="{{ route('report-stock') }}" method="GET" id="reportForm">
+                        @csrf
+                        <div class="d-flex">
+                          <input 
+                            type="date" 
+                            name="date" 
+                            class="form-control form-control-sm" 
+                            id="dateForm"
+                            value="{{$date}}"
+                            onchange="document.getElementById('reportForm').submit();" 
+                          />
                           <input 
                           type="search" 
                           name="search" 
@@ -89,58 +82,45 @@
                           placeholder="Search..." 
                           aria-label="Search..." 
                           value="{{$search_value}}"
+                          onchange="document.getElementById('reportForm').submit();" 
                           />
-                        </form>
-                      </label>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="button-export">
+                      <a href="{{ route('export-stock') }}" class="btn btn-primary d-flex"><i class="fas fa-file-export"></i>Export Excel</a>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-sm-12">
+                <div class="row m-0">
+                  <div class="col-sm-12 p-0">
                     <table id="add-row" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="add-row_info">
                       <thead>
                         <tr role="row">
-                          <th>Image</th>
                           <th>Name</th>
-                          <th>Quantity</th>
-                          <th>Price</th>
-                          <th>Status</th>
                           <th>Category</th>
-                          <th>UOM</th>
-                          <th>Description</th>
-                          <th style="width: 10%">Action</th>
+                          <th>Status</th>
+                          <th>Date</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($products as $product)
-                          <tr role="row" class="odd">
-                            <td style="text-align: center">
-                              <img src="{{ asset('uploads/products/' . $product->image) }}" alt="banner" style="width: 40px;height: auto;">
-                            </td>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->quantity}}</td>
-                            <td>${{$product->price}}</td>
-                            <td><span class="{{$product->status_name == "Income" ? "color-income" : "color-return" }} status">{{$product->status_name}}</span></td>
-                            <td>{{$product->category_name}}</td>
-                            <td>{{$product->uom_unit}}</td>
-                            <td>{{$product->description}}</td>
-                            <td>
-                              <div class="form-button-action">
-                                <a  href="{{ route('update-product', $product->id) }} type="button" title="Edit Item" class="btn btn-link btn-primary btn-lg">
-                                  <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="{{ route('delete-product', $product->id) }}" onclick="return confirmation(event)" type="button" title="Remove Item" class="btn btn-link btn-danger">
-                                  <i class="fas fa-trash-alt"></i>
-                                </a>
-                              </div>
-                            </td>
-                          </tr>
-                        @endforeach
+                        @if ($stocks->isEmpty())
+                            <td colspan="4" class="none-report">No Stock Data</td>
+                        @else
+                          @foreach ($stocks as $item)
+                              <tr role="row" class="odd">
+                                  <td>{{ $item->name }}</td>
+                                  <td>{{ $item->category_name }}</td>
+                                  <td><span class="{{ $item->status_name == 'Income' ? 'color-income' : 'color-return' }} status">{{ $item->status_name }}</span></td>
+                                  <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                              </tr>
+                          @endforeach
+                        @endif
                       </tbody>
                       <tfoot>
                         <tr>
                           <td colspan="10" class="pagination-table">
-                            {{$products->onEachSide(1)->links()}}
+                            {{$stocks->onEachSide(1)->links()}}
                           </td>
                         </tr>
                       </tfoot>
